@@ -1,5 +1,7 @@
 import pandas as pd
 from pathlib import Path
+from src.config import DB_CONFIG
+from src.database import get_engine
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -264,23 +266,39 @@ def load_production_orders(df):
         "Production orders staging loaded"
     )
 
+def load_to_postgres(df, table_name, engine):
+
+    df.to_sql(
+        table_name,
+        engine,
+        schema="staging",
+        if_exists="replace",
+        index=False
+    )
+
+    print(
+        f"{table_name} loaded into PostgreSQL"
+    )
+
 if __name__ == "__main__":
+
+    engine = get_engine()
 
     # Products
 
-    """products = extract_products()
+    products = extract_products()
 
     products = transform_products(products)
 
-    load_products(products)"""
+    load_products(products)
 
     # Factories
 
-    """factories = extract_factories()
+    factories = extract_factories()
 
     factories = transform_factories(factories)
 
-    load_factories(factories)"""
+    load_factories(factories)
 
     # Production orders
 
@@ -292,4 +310,22 @@ if __name__ == "__main__":
 
     load_production_orders(
         production_orders
+    )
+
+    load_to_postgres(
+    products,
+    "stg_products",
+    engine
+    )
+    
+    load_to_postgres(
+    factories,
+    "stg_factories",
+    engine
+    )
+
+    load_to_postgres(
+    production_orders,
+    "stg_production_orders",
+    engine
     )
