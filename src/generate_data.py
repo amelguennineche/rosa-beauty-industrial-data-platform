@@ -87,7 +87,11 @@ FACTORY_LOCATIONS = [
         "country": "France"
     }
 ]
-
+PRODUCTION_STATUS = [
+    "Completed",
+    "In Progress",
+    "Delayed"
+]
 def generate_products(n_products=100):
     """
     Generate synthetic product master data
@@ -244,8 +248,141 @@ def generate_factories():
     print(f"Generated {len(df)} factories")
     print(f"Saved to {output_file}")
 
+def generate_production_orders(
+        n_orders=500
+):
+
+    products_df = pd.read_csv(
+        RAW_DATA_DIR / "products.csv"
+    )
+
+    factories_df = pd.read_csv(
+        RAW_DATA_DIR / "factories.csv"
+    )
+
+
+    products_ids = products_df["product_id"].tolist()
+
+    factories_ids = factories_df["factory_id"].tolist()
+
+
+    production_orders = []
+
+
+    for i in range(1, n_orders + 1):
+
+        planned_quantity = random.randint(
+            5000,
+            50000
+        )
+
+
+        actual_quantity = int(
+            planned_quantity *
+            random.uniform(0.9, 1.1)
+        )
+
+
+        order = {
+
+            "production_id":
+                f"PO{i:05d}",
+
+
+            "product_id":
+                random.choice(products_ids),
+
+
+            "factory_id":
+                random.choice(factories_ids),
+
+
+            "production_date":
+                fake.date_between(
+                    start_date="-2y",
+                    end_date="today"
+                ),
+
+
+            "planned_quantity":
+                planned_quantity,
+
+
+            "actual_quantity":
+                actual_quantity,
+
+
+            "production_status":
+                random.choice(PRODUCTION_STATUS),
+
+
+            "defect_rate":
+                round(
+                    random.uniform(
+                        0.001,
+                        0.05
+                    ),
+                    3
+                )
+        }
+
+
+        production_orders.append(order)
+
+
+
+    df = pd.DataFrame(production_orders)
+
+
+    # ======================
+    # Data Quality Checks
+    # ======================
+
+    assert df["production_id"].is_unique
+
+    assert df["product_id"].isin(products_ids).all()
+
+    assert df["factory_id"].isin(factories_ids).all()
+
+    assert df["planned_quantity"].notnull().all()
+
+    assert df["actual_quantity"].notnull().all()
+
+    assert (df["actual_quantity"] > 0).all()
+
+    assert df["defect_rate"].between(0, 1).all()
+
+    assert (
+        df["actual_quantity"] <= df["planned_quantity"] * 1.2
+    ).all()
+
+    print("\nDataset preview:")
+    print(df.head())
+
+    print("\nDataset information:")
+    print(df.info())
+
+    print("\nMissing values:")
+    print(df.isnull().sum())
+
+    output_file = (
+        RAW_DATA_DIR /
+        "production_orders.csv"
+    )
+
+
+    df.to_csv(
+        output_file,
+        index=False
+    )
+
+
+    print(
+        f"Generated {len(df)} production orders"
+    )
 
 if __name__ == "__main__":
 
     #generate_products()
-    generate_factories()
+    #generate_factories()
+    generate_production_orders()

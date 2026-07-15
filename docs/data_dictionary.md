@@ -26,3 +26,16 @@
 | production_capacity | INTEGER | Annual production capacity |
 | opening_date | DATE | Factory opening date |
 | active_flag | BOOLEAN | Indicates if factory is active |
+
+## production_orders.csv
+
+| Column | Type | Description |
+|--------|------|-------------|
+| production_id | STRING | Unique production order identifier |
+| product_id | STRING | Product reference |
+| factory_id | STRING | Factory reference |
+| production_date | DATE | Production date |
+| planned_quantity | INTEGER | Planned production quantity |
+| actual_quantity | INTEGER | Actual production quantity |
+| production_status | STRING | Production order status |
+| defect_rate | FLOAT | Percentage of defective products |
