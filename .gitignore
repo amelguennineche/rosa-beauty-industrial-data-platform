@@ -1,0 +1,12 @@
+# Python
+.venv/
+
+# Cache
+__pycache__/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data generated
+data/raw/
+data/processed/
