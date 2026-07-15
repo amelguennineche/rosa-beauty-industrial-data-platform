@@ -1,0 +1,6 @@
+factory_id,factory_name,city,region,country,employees_count,production_capacity,opening_date,active_flag
+FAC0001,Rosa Arras Manufacturing Site,Arras,Hauts-de-France,France,287,1882132,2010-07-31,True
+FAC0002,Rosa Reims Manufacturing Site,Reims,Grand Est,France,155,1141754,2025-04-19,True
+FAC0003,Rosa Lille Manufacturing Site,Lille,Hauts-de-France,France,437,1403368,2012-11-13,True
+FAC0004,Rosa Lyon Manufacturing Site,Lyon,Auvergne-Rhône-Alpes,France,383,565674,2020-12-12,True
+FAC0005,Rosa Bordeaux Manufacturing Site,Bordeaux,Nouvelle-Aquitaine,France,332,820007,2023-09-01,True

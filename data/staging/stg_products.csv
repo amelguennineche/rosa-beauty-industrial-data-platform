@@ -1,0 +1,101 @@
+product_id,product_name,category,brand,volume_ml,launch_date,active_flag
+PROD0001,Rosa Eau de Parfum,Fragrance,Rosa Essentials,150,2023-09-21,True
+PROD0002,Rosa Eye Cream,Skincare,Rosa Premium,100,2021-11-24,True
+PROD0003,Rosa Conditioner,Haircare,Rosa Essentials,30,2021-11-20,True
+PROD0004,Rosa Hair Oil,Haircare,Rosa Organics,150,2025-09-25,True
+PROD0005,Rosa Hydrating Cream,Skincare,Rosa Premium,50,2022-01-14,True
+PROD0006,Rosa Mascara,Makeup,Rosa Organics,200,2021-09-10,False
+PROD0007,Rosa Anti-Aging Serum,Skincare,Rosa Premium,200,2025-06-10,False
+PROD0008,Rosa Body Mist,Fragrance,Rosa Luxe,30,2023-06-17,True
+PROD0009,Rosa Hydrating Cream,Skincare,Rosa Organics,100,2025-05-29,True
+PROD0010,Rosa Eau de Parfum,Fragrance,Rosa Luxe,150,2022-10-07,True
+PROD0011,Rosa Repair Shampoo,Haircare,Rosa Premium,50,2022-04-13,True
+PROD0012,Rosa Body Mist,Fragrance,Rosa Premium,30,2024-08-19,True
+PROD0013,Rosa Hydrating Cream,Skincare,Rosa Organics,50,2022-01-22,False
+PROD0014,Rosa Anti-Aging Serum,Skincare,Rosa Luxe,150,2025-01-20,True
+PROD0015,Rosa Blush,Makeup,Rosa Premium,75,2021-07-24,True
+PROD0016,Rosa Conditioner,Haircare,Rosa Luxe,150,2022-01-23,True
+PROD0017,Rosa Mascara,Makeup,Rosa Luxe,150,2023-09-30,True
+PROD0018,Rosa Eau de Toilette,Fragrance,Rosa Premium,50,2022-12-04,True
+PROD0019,Rosa Repair Shampoo,Haircare,Rosa Essentials,75,2023-02-26,True
+PROD0020,Rosa Mascara,Makeup,Rosa Luxe,200,2024-08-11,True
+PROD0021,Rosa Eau de Parfum,Fragrance,Rosa Premium,150,2022-12-13,False
+PROD0022,Rosa Anti-Aging Serum,Skincare,Rosa Organics,200,2021-10-25,True
+PROD0023,Rosa Eau de Toilette,Fragrance,Rosa Organics,30,2022-02-07,True
+PROD0024,Rosa Conditioner,Haircare,Rosa Organics,100,2021-10-11,True
+PROD0025,Rosa Blush,Makeup,Rosa Organics,200,2025-12-13,False
+PROD0026,Rosa Hair Oil,Haircare,Rosa Essentials,100,2025-12-26,True
+PROD0027,Rosa Hydrating Cream,Skincare,Rosa Organics,30,2023-02-26,True
+PROD0028,Rosa Hydrating Cream,Skincare,Rosa Organics,150,2024-06-11,True
+PROD0029,Rosa Foundation,Makeup,Rosa Premium,50,2024-10-07,True
+PROD0030,Rosa Hydrating Cream,Skincare,Rosa Premium,75,2024-04-16,False
+PROD0031,Rosa Mascara,Makeup,Rosa Premium,50,2022-08-22,True
+PROD0032,Rosa Conditioner,Haircare,Rosa Luxe,100,2023-06-21,False
+PROD0033,Rosa Night Cream,Skincare,Rosa Luxe,30,2025-06-07,False
+PROD0034,Rosa Eau de Parfum,Fragrance,Rosa Premium,150,2025-10-03,False
+PROD0035,Rosa Hair Oil,Haircare,Rosa Organics,100,2022-08-27,True
+PROD0036,Rosa Eau de Toilette,Fragrance,Rosa Organics,100,2022-11-13,False
+PROD0037,Rosa Mascara,Makeup,Rosa Luxe,50,2024-02-08,False
+PROD0038,Rosa Repair Shampoo,Haircare,Rosa Premium,150,2022-05-25,False
+PROD0039,Rosa Face Cleanser,Skincare,Rosa Premium,75,2026-03-27,True
+PROD0040,Rosa Repair Shampoo,Haircare,Rosa Luxe,30,2022-06-22,False
+PROD0041,Rosa Foundation,Makeup,Rosa Organics,75,2026-03-25,True
+PROD0042,Rosa Blush,Makeup,Rosa Premium,150,2023-12-07,True
+PROD0043,Rosa Face Cleanser,Skincare,Rosa Luxe,75,2025-01-16,True
+PROD0044,Rosa Blush,Makeup,Rosa Organics,75,2025-06-03,True
+PROD0045,Rosa Lipstick,Makeup,Rosa Essentials,200,2022-08-07,True
+PROD0046,Rosa Repair Shampoo,Haircare,Rosa Organics,200,2026-04-07,True
+PROD0047,Rosa Eau de Parfum,Fragrance,Rosa Organics,100,2025-09-20,True
+PROD0048,Rosa Eau de Parfum,Fragrance,Rosa Luxe,30,2026-04-10,True
+PROD0049,Rosa Face Cleanser,Skincare,Rosa Premium,30,2026-04-10,True
+PROD0050,Rosa Eau de Toilette,Fragrance,Rosa Essentials,75,2021-08-21,True
+PROD0051,Rosa Lipstick,Makeup,Rosa Luxe,75,2026-03-08,True
+PROD0052,Rosa Conditioner,Haircare,Rosa Premium,30,2023-05-20,False
+PROD0053,Rosa Eau de Parfum,Fragrance,Rosa Premium,30,2023-03-07,True
+PROD0054,Rosa Face Cleanser,Skincare,Rosa Luxe,100,2023-06-04,True
+PROD0055,Rosa Eau de Parfum,Fragrance,Rosa Luxe,200,2025-11-02,True
+PROD0056,Rosa Body Mist,Fragrance,Rosa Premium,150,2021-12-16,True
+PROD0057,Rosa Body Mist,Fragrance,Rosa Premium,100,2024-03-19,True
+PROD0058,Rosa Body Mist,Fragrance,Rosa Essentials,150,2023-05-14,True
+PROD0059,Rosa Hair Oil,Haircare,Rosa Luxe,150,2023-03-01,True
+PROD0060,Rosa Blush,Makeup,Rosa Premium,50,2021-11-25,True
+PROD0061,Rosa Eau de Parfum,Fragrance,Rosa Luxe,200,2025-04-22,False
+PROD0062,Rosa Conditioner,Haircare,Rosa Luxe,200,2025-10-07,True
+PROD0063,Rosa Eau de Toilette,Fragrance,Rosa Premium,200,2026-01-06,False
+PROD0064,Rosa Foundation,Makeup,Rosa Premium,30,2022-03-23,True
+PROD0065,Rosa Anti-Aging Serum,Skincare,Rosa Luxe,75,2023-12-26,True
+PROD0066,Rosa Eau de Toilette,Fragrance,Rosa Organics,50,2023-08-02,True
+PROD0067,Rosa Blush,Makeup,Rosa Organics,150,2025-01-27,True
+PROD0068,Rosa Lipstick,Makeup,Rosa Premium,75,2026-04-05,True
+PROD0069,Rosa Conditioner,Haircare,Rosa Organics,50,2021-09-11,True
+PROD0070,Rosa Eau de Parfum,Fragrance,Rosa Premium,75,2024-12-13,True
+PROD0071,Rosa Hair Mask,Haircare,Rosa Luxe,100,2025-07-26,True
+PROD0072,Rosa Mascara,Makeup,Rosa Luxe,100,2021-11-22,True
+PROD0073,Rosa Blush,Makeup,Rosa Luxe,50,2023-11-13,True
+PROD0074,Rosa Repair Shampoo,Haircare,Rosa Luxe,100,2025-12-25,True
+PROD0075,Rosa Blush,Makeup,Rosa Organics,100,2022-11-15,True
+PROD0076,Rosa Hair Oil,Haircare,Rosa Premium,100,2024-08-09,False
+PROD0077,Rosa Hair Oil,Haircare,Rosa Luxe,150,2025-03-31,True
+PROD0078,Rosa Eau de Parfum,Fragrance,Rosa Essentials,50,2021-10-29,True
+PROD0079,Rosa Hair Oil,Haircare,Rosa Luxe,30,2024-03-16,False
+PROD0080,Rosa Lipstick,Makeup,Rosa Organics,50,2025-09-24,True
+PROD0081,Rosa Eau de Parfum,Fragrance,Rosa Organics,30,2023-06-01,False
+PROD0082,Rosa Eau de Parfum,Fragrance,Rosa Premium,200,2026-04-06,False
+PROD0083,Rosa Lipstick,Makeup,Rosa Luxe,100,2024-02-26,False
+PROD0084,Rosa Eau de Parfum,Fragrance,Rosa Luxe,50,2025-01-31,True
+PROD0085,Rosa Repair Shampoo,Haircare,Rosa Organics,200,2025-02-12,True
+PROD0086,Rosa Lipstick,Makeup,Rosa Essentials,50,2024-12-14,False
+PROD0087,Rosa Eau de Parfum,Fragrance,Rosa Organics,50,2022-11-06,True
+PROD0088,Rosa Eau de Toilette,Fragrance,Rosa Essentials,150,2023-10-03,True
+PROD0089,Rosa Eau de Toilette,Fragrance,Rosa Premium,100,2026-01-03,True
+PROD0090,Rosa Mascara,Makeup,Rosa Essentials,100,2025-10-07,True
+PROD0091,Rosa Mascara,Makeup,Rosa Essentials,30,2022-10-16,True
+PROD0092,Rosa Blush,Makeup,Rosa Essentials,50,2025-07-15,True
+PROD0093,Rosa Eau de Parfum,Fragrance,Rosa Essentials,30,2025-05-04,False
+PROD0094,Rosa Mascara,Makeup,Rosa Organics,50,2023-02-28,True
+PROD0095,Rosa Eau de Toilette,Fragrance,Rosa Organics,150,2025-05-20,True
+PROD0096,Rosa Eau de Parfum,Fragrance,Rosa Luxe,50,2022-09-19,True
+PROD0097,Rosa Hair Mask,Haircare,Rosa Essentials,200,2024-05-24,True
+PROD0098,Rosa Anti-Aging Serum,Skincare,Rosa Essentials,50,2025-04-19,True
+PROD0099,Rosa Night Cream,Skincare,Rosa Essentials,75,2024-02-18,True
+PROD0100,Rosa Repair Shampoo,Haircare,Rosa Organics,200,2023-08-04,True
