@@ -3,7 +3,6 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 ![dbt](https://img.shields.io/badge/dbt-Analytics%20Engineering-orange)
 ![SQL](https://img.shields.io/badge/SQL-Data%20Transformation-lightgrey)
-![Power BI](https://img.shields.io/badge/Power%20BI-Data%20Visualization-yellow)
 
 ---
 
@@ -119,7 +118,6 @@ flowchart LR
     G --> E
     H --> E
 
-    E --> I[Power BI Analytics]
 ```
 
 
@@ -135,7 +133,6 @@ The project is built using modern data engineering and analytics engineering tec
 | Data Modeling | Star Schema |
 | Data Quality | dbt Generic Tests |
 | Documentation | dbt Docs |
-| Data Visualization | Power BI |
 | Version Control | Git & GitHub |
 
 ---
@@ -617,3 +614,1210 @@ The project implements the following dbt generic tests:
 | relationships | Validates foreign key relationships | Ensures referential integrity between tables |
 
 These tests are defined in YAML schema files and executed automatically using dbt.
+
+### Primary Key Validation
+
+Primary keys are validated using `unique` and `not_null` tests.
+
+Examples:
+
+| Table | Column | Tests |
+|---|---|---|
+| dim_products | product_id | unique, not_null |
+| dim_factories | factory_id | unique, not_null |
+| dim_date | date_id | unique, not_null |
+| fact_production | production_id | unique, not_null |
+
+These validations ensure that each analytical entity has a reliable identifier.
+
+### Referential Integrity Validation
+
+Foreign key relationships are tested to guarantee consistency between fact and dimension tables.
+
+The following relationships are validated:
+
+| Fact Table Column | Referenced Dimension |
+|---|---|
+| fact_production.product_id | dim_products.product_id |
+| fact_production.factory_id | dim_factories.factory_id |
+| fact_production.date_id | dim_date.date_id |
+
+These tests prevent orphan records and ensure that all production events are correctly linked to their descriptive dimensions.
+
+### Test Execution
+
+Data quality tests are executed using the dbt command:
+
+```bash
+dbt test
+```
+The execution validates all defined quality rules across the project models.
+
+Example test results:
+Completed successfully
+
+```bash
+PASS=29
+WARN=0
+ERROR=0
+```
+
+---
+
+
+### Data Quality Benefits
+
+The implemented testing framework provides:
+
+- Reliable analytical datasets
+- Early detection of data issues
+- Improved confidence in business reporting
+- Maintainable and scalable data pipelines
+
+By integrating data quality checks directly into dbt transformations, the platform ensures that business users consume consistent and trustworthy information.
+
+## dbt Documentation & Lineage
+
+The project uses **dbt documentation features** to provide visibility into the data warehouse structure, transformation logic, and model dependencies.
+
+dbt automatically generates technical documentation from:
+
+- Model definitions
+- Source configurations
+- Column descriptions
+- Data tests
+- Model dependencies
+
+This documentation improves project maintainability and facilitates collaboration between data engineers, analysts, and business teams.
+
+### Documentation Management
+
+All models and sources are documented using dbt YAML files.
+
+Documentation includes:
+
+- Model descriptions
+- Column definitions
+- Data quality rules
+- Source information
+- Relationships between datasets
+
+Example documented layers:
+
+| Layer | Documented Objects |
+|---|---|
+| Source Layer | stg_products, stg_factories, stg_production_orders |
+| Intermediate Layer | int_production |
+| Mart Layer | dim_products, dim_factories, dim_date, fact_production |
+
+This documentation provides a clear understanding of the role and purpose of each dataset.
+
+### Data Lineage
+
+dbt automatically generates a lineage graph representing the relationships between models.
+
+The lineage allows users to understand:
+
+- Where data comes from
+- How data is transformed
+- Which models depend on each other
+- How changes propagate through the pipeline
+
+The main data flow is:
+
+```text
+PostgreSQL Sources
+
+        ↓
+
+Staging Layer
+
+        ↓
+
+Intermediate Transformation
+
+        ↓
+
+Dimensions & Fact Tables
+
+        ↓
+
+Business Intelligence Layer
+
+```
+
+### Model Dependency Graph
+
+The final warehouse follows the following dependency structure:
+
+```text
+stg_products
+        |
+        ├──────────────→ dim_products
+        |
+        └──────────────→ int_production
+
+
+stg_factories
+        |
+        ├──────────────→ dim_factories
+        |
+        └──────────────→ int_production
+
+
+stg_production_orders
+        |
+        ├──────────────→ dim_date
+        |
+        └──────────────→ int_production
+
+
+int_production
+        |
+        └──────────────→ fact_production
+
+
+dim_products
+dim_factories
+dim_date
+        |
+        └──────────────→ fact_production
+```
+### Generating dbt Documentation
+
+The documentation is generated using dbt commands.
+
+Generate documentation:
+
+```bash
+dbt docs generate
+```
+
+Launch the documentation website:
+```bash
+dbt docs serve
+```
+
+### Documentation Benefits
+
+The dbt documentation layer provides several benefits:
+
+- Improves understanding of the data platform
+- Simplifies onboarding of new team members
+- Facilitates debugging and maintenance
+- Ensures transparency of transformations
+- Supports collaboration between technical and business teams
+
+A well-documented data platform improves reliability and long-term scalability.
+
+# Data Quality Framework
+
+Data quality is a critical component of this project to ensure that analytical datasets are reliable, consistent, and ready for business consumption.
+
+The project implements automated data quality checks using **dbt tests**.
+
+These tests are executed during the transformation workflow and validate the integrity of the data warehouse models.
+
+---
+
+## Implemented Data Quality Checks
+
+### Uniqueness Validation
+
+Ensures that primary business identifiers are unique.
+
+Applied on:
+
+- `product_id` in `dim_products`
+- `factory_id` in `dim_factories`
+- `date_id` in `dim_date`
+- `production_id` in `fact_production`
+
+Example:
+
+```yaml
+tests:
+  - unique
+```
+
+Purpose:
+
+- Prevent duplicate dimension records
+- Guarantee reliable joins between tables
+
+---
+
+## Null Value Validation
+
+Ensures that mandatory fields are always populated.
+
+Applied on key columns:
+
+| Table | Column |
+|---|---|
+| dim_products | product_id |
+| dim_factories | factory_id |
+| dim_date | date_id |
+| fact_production | production_id |
+| fact_production | product_id |
+| fact_production | factory_id |
+| fact_production | date_id |
+
+Example:
+
+```yaml
+tests:
+  - not_null
+```
+
+Purpose:
+
+- Avoid incomplete analytical records
+- Maintain referential integrity
+
+---
+
+## Referential Integrity Validation
+
+Relationships between fact and dimension tables are validated using dbt relationship tests.
+
+The warehouse follows a star schema where:
+
+```
+fact_production
+        |
+        |---- product_id → dim_products
+        |
+        |---- factory_id → dim_factories
+        |
+        |---- date_id → dim_date
+```
+
+Example:
+
+```yaml
+tests:
+  - relationships:
+      to: ref('dim_products')
+      field: product_id
+```
+
+Purpose:
+
+- Ensure all foreign keys match existing dimension records
+- Prevent orphan records
+- Guarantee consistency across analytical models
+
+---
+
+## Data Quality Workflow
+
+The validation process follows this workflow:
+
+```
+Data Sources
+
+      ↓
+
+Staging Layer
+
+      ↓
+
+dbt Transformations
+
+      ↓
+
+Data Quality Tests
+
+      ↓
+
+Analytics Ready Warehouse
+```
+
+Before deployment or analysis, dbt tests validate the reliability of generated datasets.
+
+---
+
+## Benefits
+
+The implemented quality framework provides:
+
+- Reliable analytical datasets
+- Early detection of data issues
+- Automated validation during development
+- Improved trust in business reporting
+- Maintainable and scalable data pipelines
+
+# dbt Documentation & Data Lineage
+
+The project uses **dbt documentation capabilities** to provide visibility into the data warehouse structure, model dependencies, and data transformations.
+
+dbt automatically generates technical documentation from:
+
+- SQL models
+- Source definitions
+- Model descriptions
+- Column descriptions
+- Data tests
+- Model dependencies
+
+This documentation provides a centralized view of the analytical data platform.
+
+---
+
+## Generated Documentation
+
+The dbt documentation includes:
+
+- Data warehouse models overview
+- Source-to-model relationships
+- Column-level descriptions
+- Applied data quality tests
+- Model dependencies and lineage graph
+
+The documentation allows both technical and business users to understand how data flows through the platform.
+
+---
+
+## Data Lineage Overview
+
+The data lineage describes the complete journey of data from operational sources to analytical tables.
+
+The implemented lineage is:
+
+```
+Operational Data Sources
+
+        ↓
+
+rosa_staging
+
+        ↓
+
+Staging Sources
+- stg_products
+- stg_factories
+- stg_production_orders
+
+        ↓
+
+Intermediate Layer
+
+- int_production
+
+        ↓
+
+Warehouse Marts
+
+Dimensions:
+- dim_products
+- dim_factories
+- dim_date
+
+Fact:
+- fact_production
+
+        ↓
+
+Business Analytics
+```
+
+---
+
+The lineage helps identify:
+
+- Data origins
+- Transformation steps
+- Dependencies between models
+- Impact of future changes
+
+## Documentation Benefits
+
+Using dbt documentation provides several advantages:
+
+### Data Transparency
+
+Teams can understand where data comes from and how metrics are calculated.
+
+### Maintainability
+
+Developers can quickly identify dependencies and evaluate the impact of modifications.
+
+### Collaboration
+
+Documentation creates a common understanding between:
+
+- Data engineers
+- Data analysts
+- Business stakeholders
+
+### Data Governance
+
+The documented lineage improves traceability and supports better data governance practices.
+
+---
+
+The dbt documentation layer transforms the warehouse from a collection of SQL models into a documented and maintainable data platform.
+
+# Project Setup & Execution
+
+This section explains how to install, configure, and execute the Rosa Manufacturing Data Platform locally.
+
+The project runs using:
+
+- PostgreSQL as the data warehouse database
+- dbt Core as the transformation framework
+- Git for version control
+
+---
+
+## Prerequisites
+
+Before running the project, make sure the following tools are installed:
+
+| Tool | Purpose |
+|---|---|
+| PostgreSQL | Database management system |
+| Python | Runtime environment |
+| dbt Core | Data transformation framework |
+| Git | Version control |
+
+Required knowledge:
+
+- SQL
+- PostgreSQL
+- dbt fundamentals
+- Command line usage
+
+---
+
+## Clone the Repository
+
+Clone the project repository:
+
+```bash
+git clone <repository_url>
+```
+
+Navigate to the project directory:
+
+```bash
+cd rosa_manufacturing_dwh
+```
+
+## Create Python Environment
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate the environment:
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### Linux / MacOS
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+## Install dbt Dependencies
+
+Install dbt with PostgreSQL adapter:
+
+```bash
+pip install dbt-postgres
+```
+
+Verify installation:
+
+```bash
+dbt --version
+```
+
+Expected output:
+
+```
+dbt=1.x.x
+adapter=postgres
+```
+
+## PostgreSQL Configuration
+
+Create the PostgreSQL database:
+
+```sql
+CREATE DATABASE rosa_manufacturing;
+```
+
+The project uses the following database structure:
+
+```
+rosa_manufacturing
+
+├── staging
+│   ├── stg_products
+│   ├── stg_factories
+│   └── stg_production_orders
+│
+├── warehouse_intermediate
+│   └── int_production
+│
+└── warehouse
+    ├── dim_products
+    ├── dim_factories
+    ├── dim_date
+    └── fact_production
+```
+
+---
+
+## Configure dbt Connection
+
+Update the `profiles.yml` file with PostgreSQL credentials:
+
+Example:
+
+```yaml
+rosa_manufacturing_dwh:
+
+  target: dev
+
+  outputs:
+
+    dev:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: <password>
+      port: 5432
+      database: rosa_manufacturing
+      schema: warehouse
+      threads: 4
+```
+
+Test the connection:
+
+```bash
+dbt debug
+```
+
+A successful connection should display:
+
+```
+Connection test: OK
+```
+
+## Running the Data Pipeline
+
+The data transformation workflow is managed through dbt commands.
+
+The execution process follows these main steps:
+
+```
+Source Data
+     |
+     ↓
+dbt Models Execution
+     |
+     ↓
+Data Quality Validation
+     |
+     ↓
+Documentation Generation
+```
+
+---
+
+## Install dbt Packages
+
+Before running the project, install required dbt dependencies:
+
+```bash
+dbt deps
+```
+
+This command installs external dbt packages defined in:
+
+```
+packages.yml
+```
+
+---
+
+## Parse the Project
+
+Validate the dbt project structure:
+
+```bash
+dbt parse
+```
+
+This step checks:
+
+- SQL syntax
+- Model references
+- Source definitions
+- Configuration consistency
+
+A successful parse confirms that dbt can correctly understand the project structure.
+
+---
+
+## Build the Data Warehouse
+
+Execute all transformation models:
+
+```bash
+dbt run
+```
+
+The execution order is automatically managed by dbt based on model dependencies.
+
+The build sequence is:
+
+```
+Sources
+
+   ↓
+
+Intermediate Models
+
+int_production
+
+   ↓
+
+Dimension Tables
+
+dim_products
+dim_factories
+dim_date
+
+   ↓
+
+Fact Table
+
+fact_production
+```
+
+---
+
+## Run Data Quality Tests
+
+Execute all defined data quality checks:
+
+```bash
+dbt test
+```
+
+The tests validate:
+
+- Primary key uniqueness
+- Mandatory fields completeness
+- Referential integrity between fact and dimension tables
+
+Example validation:
+
+```
+fact_production.product_id
+        |
+        ↓
+dim_products.product_id
+```
+
+---
+
+## Generate dbt Documentation
+
+Create the project documentation:
+
+```bash
+dbt docs generate
+```
+
+This command generates:
+
+- Model documentation
+- Column descriptions
+- Data lineage information
+- Test documentation
+
+---
+
+## Access dbt Documentation Interface
+
+Launch the documentation server:
+
+```bash
+dbt docs serve
+```
+
+The interface provides:
+
+- Interactive model exploration
+- Lineage visualization
+- Source-to-target tracking
+- Documentation browsing
+
+---
+
+## Complete Execution Workflow
+
+The complete local workflow is:
+
+```bash
+dbt deps
+
+dbt debug
+
+dbt parse
+
+dbt run
+
+dbt test
+
+dbt docs generate
+
+dbt docs serve
+```
+
+This workflow ensures that the data platform is built, validated, and documented before analytical consumption.
+
+# Project Challenges & Technical Decisions
+
+Building this data platform required several technical decisions to ensure scalability, maintainability, and data reliability.
+
+The main challenges addressed during the project were:
+
+- Structuring raw operational data for analytics
+- Designing a scalable data warehouse model
+- Ensuring data quality and consistency
+- Managing dependencies between transformations
+- Creating a maintainable ELT workflow
+
+---
+
+# Data Warehouse Modeling Decision
+
+## Challenge
+
+Raw production data contains operational information about:
+
+- Products
+- Factories
+- Production orders
+
+However, this structure is not optimized for analytical queries and business reporting.
+
+---
+
+## Solution
+
+A dimensional data warehouse model was implemented using a **Star Schema approach**.
+
+The model separates:
+
+### Dimension Tables
+
+Containing descriptive information:
+
+- `dim_products`
+- `dim_factories`
+- `dim_date`
+
+### Fact Table
+
+Containing measurable production events:
+
+- `fact_production`
+
+The final structure improves:
+
+- Query performance
+- Data readability
+- Business analysis capabilities
+
+# ELT Approach with dbt
+
+## Challenge
+
+Traditional ETL pipelines often require complex transformation logic outside the database.
+
+For analytical workloads, SQL-based transformations provide a more flexible and maintainable approach.
+
+---
+
+## Solution
+
+The project follows an ELT architecture:
+
+```
+Data Sources
+
+      ↓
+
+Load into Database
+
+      ↓
+
+Transform using dbt
+
+      ↓
+
+Analytics-ready Warehouse
+```
+
+dbt was selected as the transformation framework because it provides:
+
+- SQL-based transformations
+- Dependency management
+- Automated testing
+- Documentation generation
+- Data lineage tracking
+
+---
+
+## Benefits
+
+This approach allows:
+
+- Faster development cycles
+- Easier maintenance of transformations
+- Better collaboration between data engineers and analysts
+
+# Data Quality Strategy
+
+## Challenge
+
+Production data must remain reliable before being used for analysis.
+
+Potential issues include:
+
+- Duplicate records
+- Missing identifiers
+- Invalid relationships between tables
+
+---
+
+## Solution
+
+Automated data quality controls were implemented using dbt tests.
+
+The validation strategy includes:
+
+### Uniqueness Tests
+
+Ensures business keys are unique.
+
+Example:
+
+```
+production_id
+product_id
+factory_id
+date_id
+```
+
+---
+
+### Completeness Tests
+
+Ensures mandatory fields are populated.
+
+Example:
+
+```
+not_null(product_id)
+not_null(factory_id)
+```
+
+---
+
+### Referential Integrity Tests
+
+Ensures relationships between fact and dimension tables remain valid.
+
+Example:
+
+```
+fact_production.product_id
+
+        ↓
+
+dim_products.product_id
+```
+
+---
+
+## Benefits
+
+The implemented quality framework improves:
+
+- Data reliability
+- Error detection
+- Trust in analytical results
+- Maintainability of the platform
+
+# Database Technology Choice
+
+## Why PostgreSQL?
+
+PostgreSQL was selected as the database engine for this project because it provides:
+
+- Strong SQL capabilities
+- Reliability and stability
+- Support for analytical workloads
+- Open-source ecosystem
+- Compatibility with modern data engineering tools
+
+It provides a realistic environment for developing and testing a data warehouse solution.
+
+---
+
+## Why dbt + PostgreSQL?
+
+The combination of PostgreSQL and dbt provides:
+
+- Database-driven transformations
+- Version-controlled SQL models
+- Automated testing
+- Reproducible data pipelines
+
+This combination reflects modern analytics engineering practices used in production environments.
+
+# Database Technology Choice
+
+## Why PostgreSQL?
+
+PostgreSQL was selected as the database engine for this project because it provides:
+
+- Strong SQL capabilities
+- Reliability and stability
+- Support for analytical workloads
+- Open-source ecosystem
+- Compatibility with modern data engineering tools
+
+It provides a realistic environment for developing and testing a data warehouse solution.
+
+---
+
+## Why dbt + PostgreSQL?
+
+The combination of PostgreSQL and dbt provides:
+
+- Database-driven transformations
+- Version-controlled SQL models
+- Automated testing
+- Reproducible data pipelines
+
+This combination reflects modern analytics engineering practices used in production environments.
+
+# Future Improvements
+
+Although the current platform provides a complete analytical data warehouse solution, several improvements could be implemented to move the project closer to an enterprise-grade data platform.
+
+---
+
+## Cloud Migration
+
+The current solution runs locally using PostgreSQL.
+
+A future evolution would be to migrate the platform to a cloud architecture using services such as:
+
+- Azure Data Lake Storage Gen2 for scalable data storage
+- Azure Data Factory for data ingestion and orchestration
+- Azure SQL Database or Azure Synapse Analytics for cloud-based analytics
+
+Target architecture:
+
+```
+Data Sources
+
+      ↓
+
+Cloud Data Lake
+
+      ↓
+
+Data Pipeline Orchestration
+
+      ↓
+
+Cloud Data Warehouse
+
+      ↓
+
+BI Analytics
+```
+
+Benefits:
+
+- Scalability
+- High availability
+- Cloud-native data processing
+- Enterprise data management capabilities
+
+---
+
+## Data Pipeline Orchestration
+
+The current workflow relies on manual dbt execution.
+
+A future improvement would be to introduce workflow orchestration tools such as:
+
+- Apache Airflow
+- Azure Data Factory
+
+to automate:
+
+- Data ingestion
+- Transformation scheduling
+- Pipeline monitoring
+- Failure handling
+
+---
+
+## Incremental Data Processing
+
+Currently, models process the available dataset during execution.
+
+For larger production environments, incremental models could be implemented to process only new or modified records.
+
+Benefits:
+
+- Reduced processing time
+- Lower computational cost
+- Better scalability for growing datasets
+
+Example:
+
+```
+New Production Records
+
+        ↓
+
+Incremental dbt Model
+
+        ↓
+
+Updated Warehouse Tables
+```
+
+---
+
+## Advanced Data Quality Monitoring
+
+The current solution includes dbt tests for:
+
+- Uniqueness
+- Completeness
+- Referential integrity
+
+Future improvements could include:
+
+- Data freshness monitoring
+- Anomaly detection
+- Automated data quality reporting
+- Data observability tools
+
+---
+
+## Business Intelligence Layer
+
+The current warehouse is designed to support analytical consumption.
+
+A future implementation could include a BI layer using tools such as:
+
+- Power BI
+- Tableau
+
+Potential dashboards:
+
+### Production Performance Dashboard
+
+Metrics:
+
+- Production efficiency
+- Planned vs actual production
+- Factory performance
+
+### Quality Dashboard
+
+Metrics:
+
+- Defect rate evolution
+- Quality classification
+- Production issues tracking
+
+---
+
+## Advanced Analytics
+
+Additional analytical capabilities could be added:
+
+- Production forecasting
+- Demand prediction
+- Anomaly detection
+- Machine learning models for optimization
+
+Python-based machine learning workflows could consume the curated warehouse datasets.
+
+---
+
+These improvements would transform the current analytical warehouse into a complete enterprise data platform combining data engineering, cloud infrastructure, business intelligence, and advanced analytics.
+
+# Project Demonstration
+
+This section presents key screenshots from the implemented data platform.
+
+---
+
+## dbt Documentation & Lineage
+
+The dbt documentation interface provides visibility into:
+
+- Data models
+- Source definitions
+- Model dependencies
+- Data lineage
+
+![dbt lineage](images/dbt_lineage.png)
+---
+
+## Data Quality Validation
+
+Automated data quality checks are implemented using dbt tests.
+
+Validated controls include:
+
+- Primary key uniqueness
+- Mandatory fields completeness
+- Referential integrity between fact and dimension tables
+
+![dbt tests](images/dbt_test.png)
+
+---
+
+## dbt Warehouse Structure & Lineage
+
+The dbt documentation interface provides a complete view of the implemented data warehouse structure.
+
+It highlights:
+
+- Source tables
+- Transformation dependencies
+- Intermediate models
+- Dimension tables
+- Fact tables
+
+The lineage graph represents the complete data flow from operational sources to analytical models.
+
+![dbt warehouse lineage](images/database_structure.png)
