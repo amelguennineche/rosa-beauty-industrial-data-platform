@@ -43,8 +43,6 @@ models:
     marts:
       dimensions:
         +materialized: table
-        +schema: warehouse
 
       facts:
         +materialized: table
-        +schema: warehouse
