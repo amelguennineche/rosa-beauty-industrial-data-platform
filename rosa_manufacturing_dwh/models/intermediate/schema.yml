@@ -1,0 +1,40 @@
+version: 2
+
+models:
+
+  - name: int_production
+    description: "Table intermédiaire enrichissant les ordres de production avec les informations produits et usines."
+
+    columns:
+
+      - name: production_id
+        description: "Identifiant unique de l'ordre de production"
+        tests:
+          - unique
+          - not_null
+
+
+      - name: product_id
+        description: "Identifiant du produit fabriqué"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+
+
+      - name: factory_id
+        description: "Identifiant de l'usine de production"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_factories')
+                field: factory_id
+
+
+      - name: production_efficiency
+        description: "Ratio entre quantité produite et quantité planifiée"
+        tests:
+          - not_null
