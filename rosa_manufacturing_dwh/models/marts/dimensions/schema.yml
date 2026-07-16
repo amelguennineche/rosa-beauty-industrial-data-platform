@@ -24,3 +24,14 @@ models:
         tests:
           - unique
           - not_null
+      
+  - name: dim_date
+    description: "Dimension calendrier utilisée pour les analyses temporelles."
+
+    columns:
+
+      - name: date_id
+        description: "Date unique utilisée comme clé de dimension."
+        tests:
+          - unique
+          - not_null
