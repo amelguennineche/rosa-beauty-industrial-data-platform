@@ -5,3 +5,8 @@ data/raw/
 data/processed/
 .env
 *.pyc
+target/
+logs/
+dbt_packages/
+.DS_Store
+Thumbs.db
