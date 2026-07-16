@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+
+  - name: staging
+    database: rosa_manufacturing
+    schema: staging
+
+    tables:
+
+      - name: stg_products
+        description: "Produits fabriqués par Rosa Manufacturing"
+
+      - name: stg_factories
+        description: "Usines de production"
+
+      - name: stg_production_orders
+        description: "Ordres de production industriels"
