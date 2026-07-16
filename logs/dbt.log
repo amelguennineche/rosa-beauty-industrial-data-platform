@@ -1,0 +1,134 @@
+[0m13:17:52.635122 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018924BB9C30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000189262BF760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000189262BF550>]}
+
+
+============================== 13:17:52.643120 | 5e6aea7b-bc12-4092-a426-7c757c6315d6 ==============================
+[0m13:17:52.643120 [info ] [MainThread]: Running with dbt=1.12.0-rc3
+[0m13:17:52.645123 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\guenn\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt init rosa_manufacturing_dwh', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'logs'}
+[0m13:17:52.702395 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\guenn\.dbt
+[0m13:17:52.707394 [debug] [MainThread]: Starter project path: C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\.venv\lib\site-packages\dbt\include\starter_project
+[0m13:17:52.850586 [info ] [MainThread]: Setting up your profile.
+[0m13:21:04.996042 [info ] [MainThread]: Profile rosa_manufacturing_dwh written to C:\Users\guenn\.dbt\profiles.yml using target's profile_template.yml and your supplied values.
+[0m13:21:05.010522 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m13:21:05.013496 [info ] [MainThread]: dbt version: 1.12.0-rc3
+[0m13:21:05.014491 [info ] [MainThread]: python version: 3.10.10
+[0m13:21:05.015493 [info ] [MainThread]: python path: C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\.venv\Scripts\python.exe
+[0m13:21:05.016493 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m13:21:05.113582 [info ] [MainThread]: Using profiles dir at C:\Users\guenn\.dbt
+[0m13:21:05.115506 [info ] [MainThread]: Using profiles.yml file at C:\Users\guenn\.dbt\profiles.yml
+[0m13:21:05.116598 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\rosa_manufacturing_dwh\dbt_project.yml
+[0m13:21:05.118505 [info ] [MainThread]: adapter type: postgres
+[0m13:21:05.119568 [info ] [MainThread]: adapter version: 1.10.2
+[0m13:21:05.244477 [info ] [MainThread]: Configuration:
+[0m13:21:05.245453 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m13:21:05.246456 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:21:05.247417 [info ] [MainThread]: Required dependencies:
+[0m13:21:05.248376 [debug] [MainThread]: Executing "git --help"
+[0m13:21:05.325657 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone             Clone a repository into a new directory\n   init              Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add               Add file contents to the index\n   mv                Move or rename a file, a directory, or a symlink\n   restore           Restore working tree files\n   rm                Remove files from the working tree and from the index\n   sparse-checkout   Initialize and modify the sparse-checkout\n\nexamine the history and state (see also: git help revisions)\n   bisect            Use binary search to find the commit that introduced a bug\n   diff              Show changes between commits, commit and working tree, etc\n   grep              Print lines matching a pattern\n   log               Show commit logs\n   show              Show various types of objects\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   branch            List, create, or delete branches\n   commit            Record changes to the repository\n   merge             Join two or more development histories together\n   rebase            Reapply commits on top of another base tip\n   reset             Reset current HEAD to the specified state\n   switch            Switch branches\n   tag               Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch             Download objects and refs from another repository\n   pull              Fetch from and integrate with another repository or a local branch\n   push              Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:21:05.326959 [debug] [MainThread]: STDERR: "b''"
+[0m13:21:05.328863 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:21:05.329979 [info ] [MainThread]: Connection:
+[0m13:21:05.331030 [info ] [MainThread]:   host: localhost
+[0m13:21:05.331926 [info ] [MainThread]:   port: 5432
+[0m13:21:05.333237 [info ] [MainThread]:   user: postgres
+[0m13:21:05.334102 [info ] [MainThread]:   database: rosa_manufacturing
+[0m13:21:05.335204 [info ] [MainThread]:   schema: warehouse
+[0m13:21:05.336296 [info ] [MainThread]:   connect_timeout: 10
+[0m13:21:05.337406 [info ] [MainThread]:   role: None
+[0m13:21:05.338480 [info ] [MainThread]:   search_path: None
+[0m13:21:05.340203 [info ] [MainThread]:   keepalives_idle: 0
+[0m13:21:05.342036 [info ] [MainThread]:   sslmode: None
+[0m13:21:05.343179 [info ] [MainThread]:   sslcert: None
+[0m13:21:05.344821 [info ] [MainThread]:   sslkey: None
+[0m13:21:05.345980 [info ] [MainThread]:   sslrootcert: None
+[0m13:21:05.346617 [info ] [MainThread]:   application_name: dbt
+[0m13:21:05.347679 [info ] [MainThread]:   retries: 1
+[0m13:21:05.351240 [info ] [MainThread]: Registered adapter: postgres=1.10.2
+[0m13:21:05.741965 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m13:21:10.541560 [debug] [MainThread]: Using postgres connection "debug"
+[0m13:21:10.542779 [debug] [MainThread]: On debug: select 1 as id
+[0m13:21:10.543570 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:21:10.741261 [debug] [MainThread]: SQL status: SELECT 1 in 0.197 seconds
+[0m13:21:10.742426 [debug] [MainThread]: On debug: Close
+[0m13:21:10.743427 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m13:21:10.745426 [info ] [MainThread]: [32mAll checks passed![0m
+[0m13:21:10.746425 [info ] [MainThread]: Your new dbt project "rosa_manufacturing_dwh" was created!
+Initialized new project in C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\rosa_manufacturing_dwh\rosa_manufacturing_dwh
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:21:10.748428 [debug] [MainThread]: Command `dbt init` succeeded at 13:21:10.748428 after 198.29 seconds
+[0m13:21:10.749646 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m13:21:10.749646 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018924BB9C30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000189262BF520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001892627B460>]}
+[0m13:21:10.751086 [debug] [MainThread]: Flushing usage events
+[0m13:21:11.240835 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:23:47.103512 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000207845F9C30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020786CCB7C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020786CCB550>]}
+
+
+============================== 13:23:47.110517 | 8fd64f2e-4934-4c67-83c1-a7fcbcbdbc94 ==============================
+[0m13:23:47.110517 [info ] [MainThread]: Running with dbt=1.12.0-rc3
+[0m13:23:47.111514 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\guenn\\.dbt', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt debug', 'log_path': 'logs'}
+[0m13:23:47.160042 [info ] [MainThread]: dbt version: 1.12.0-rc3
+[0m13:23:47.161042 [info ] [MainThread]: python version: 3.10.10
+[0m13:23:47.162043 [info ] [MainThread]: python path: C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\.venv\Scripts\python.exe
+[0m13:23:47.163129 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m13:23:47.250700 [info ] [MainThread]: Using profiles dir at C:\Users\guenn\.dbt
+[0m13:23:47.252017 [info ] [MainThread]: Using profiles.yml file at C:\Users\guenn\.dbt\profiles.yml
+[0m13:23:47.253132 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\dbt_project.yml
+[0m13:23:47.254139 [info ] [MainThread]: adapter type: postgres
+[0m13:23:47.255301 [info ] [MainThread]: adapter version: 1.10.2
+[0m13:23:47.256342 [info ] [MainThread]: Configuration:
+[0m13:23:47.257300 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m13:23:47.257300 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m13:23:47.258300 [info ] [MainThread]: Required dependencies:
+[0m13:23:47.259300 [debug] [MainThread]: Executing "git --help"
+[0m13:23:47.328160 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone             Clone a repository into a new directory\n   init              Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add               Add file contents to the index\n   mv                Move or rename a file, a directory, or a symlink\n   restore           Restore working tree files\n   rm                Remove files from the working tree and from the index\n   sparse-checkout   Initialize and modify the sparse-checkout\n\nexamine the history and state (see also: git help revisions)\n   bisect            Use binary search to find the commit that introduced a bug\n   diff              Show changes between commits, commit and working tree, etc\n   grep              Print lines matching a pattern\n   log               Show commit logs\n   show              Show various types of objects\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   branch            List, create, or delete branches\n   commit            Record changes to the repository\n   merge             Join two or more development histories together\n   rebase            Reapply commits on top of another base tip\n   reset             Reset current HEAD to the specified state\n   switch            Switch branches\n   tag               Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch             Download objects and refs from another repository\n   pull              Fetch from and integrate with another repository or a local branch\n   push              Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:23:47.329255 [debug] [MainThread]: STDERR: "b''"
+[0m13:23:47.330527 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:23:47.330527 [info ] [MainThread]: Connection:
+[0m13:23:47.331534 [info ] [MainThread]:   host: localhost
+[0m13:23:47.332539 [info ] [MainThread]:   port: 5432
+[0m13:23:47.332539 [info ] [MainThread]:   user: postgres
+[0m13:23:47.333534 [info ] [MainThread]:   database: rosa_manufacturing
+[0m13:23:47.334536 [info ] [MainThread]:   schema: warehouse
+[0m13:23:47.335535 [info ] [MainThread]:   connect_timeout: 10
+[0m13:23:47.336533 [info ] [MainThread]:   role: None
+[0m13:23:47.337534 [info ] [MainThread]:   search_path: None
+[0m13:23:47.338537 [info ] [MainThread]:   keepalives_idle: 0
+[0m13:23:47.339533 [info ] [MainThread]:   sslmode: None
+[0m13:23:47.339533 [info ] [MainThread]:   sslcert: None
+[0m13:23:47.340533 [info ] [MainThread]:   sslkey: None
+[0m13:23:47.340533 [info ] [MainThread]:   sslrootcert: None
+[0m13:23:47.341533 [info ] [MainThread]:   application_name: dbt
+[0m13:23:47.342537 [info ] [MainThread]:   retries: 1
+[0m13:23:47.344536 [info ] [MainThread]: Registered adapter: postgres=1.10.2
+[0m13:23:47.597108 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m13:23:47.674143 [debug] [MainThread]: Using postgres connection "debug"
+[0m13:23:47.674143 [debug] [MainThread]: On debug: select 1 as id
+[0m13:23:47.675395 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:23:47.789442 [debug] [MainThread]: SQL status: SELECT 1 in 0.114 seconds
+[0m13:23:47.790446 [debug] [MainThread]: On debug: Close
+[0m13:23:47.791462 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m13:23:47.792444 [info ] [MainThread]: [31m1 check failed:[0m
+[0m13:23:47.793446 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\guenn\OneDrive\Documents\GitHub\rosa-beauty-industrial-data-platform\dbt_project.yml> not found
+
+[0m13:23:47.795443 [debug] [MainThread]: Command `dbt debug` failed at 13:23:47.795443 after 0.83 seconds
+[0m13:23:47.796462 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m13:23:47.797460 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000207845F9C30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020786DF0CD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020786DF19F0>]}
+[0m13:23:47.798442 [debug] [MainThread]: Flushing usage events
+[0m13:23:48.272588 [debug] [MainThread]: An error was encountered while trying to flush usage events
