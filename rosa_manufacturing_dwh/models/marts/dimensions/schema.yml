@@ -1,0 +1,26 @@
+version: 2
+
+models:
+
+  - name: dim_products
+    description: "Dimension contenant les informations descriptives des produits."
+
+    columns:
+
+      - name: product_id
+        description: "Identifiant unique du produit."
+        tests:
+          - unique
+          - not_null
+
+
+  - name: dim_factories
+    description: "Dimension contenant les informations descriptives des usines."
+
+    columns:
+
+      - name: factory_id
+        description: "Identifiant unique de l'usine."
+        tests:
+          - unique
+          - not_null
