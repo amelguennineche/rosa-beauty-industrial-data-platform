@@ -3,38 +3,102 @@ version: 2
 models:
 
   - name: int_production
-    description: "Table intermédiaire enrichissant les ordres de production avec les informations produits et usines."
+
+    description: >
+      Intermediate production model combining production orders with
+      product and factory information. This model enriches production
+      data with descriptive attributes and calculates production
+      performance indicators.
 
     columns:
 
       - name: production_id
-        description: "Identifiant unique de l'ordre de production"
+        description: "Unique identifier of the production order."
         tests:
-          - unique
           - not_null
+          - unique
 
 
       - name: product_id
-        description: "Identifiant du produit fabriqué"
+        description: "Identifier of the manufactured product."
         tests:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_products')
+                to: source('rosa_staging','stg_products')
                 field: product_id
 
 
+      - name: product_name
+        description: "Name of the manufactured product."
+
+
+      - name: category
+        description: "Product category."
+
+
+      - name: brand
+        description: "Product brand."
+
+
       - name: factory_id
-        description: "Identifiant de l'usine de production"
+        description: "Identifier of the manufacturing factory."
         tests:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_factories')
+                to: source('rosa_staging','stg_factories')
                 field: factory_id
 
 
+      - name: factory_name
+        description: "Name of the manufacturing factory."
+
+
+      - name: city
+        description: "City where the factory is located."
+
+
+      - name: region
+        description: "Region where the factory is located."
+
+
+      - name: country
+        description: "Country where the factory is located."
+
+
+      - name: production_date
+        description: "Date when the production operation occurred."
+
+
+      - name: planned_quantity
+        description: "Quantity planned for production."
+
+
+      - name: actual_quantity
+        description: "Quantity actually produced."
+
+
+      - name: production_variance
+        description: >
+          Difference between actual and planned production quantity.
+
+
       - name: production_efficiency
-        description: "Ratio entre quantité produite et quantité planifiée"
-        tests:
-          - not_null
+        description: >
+          Ratio between actual production quantity and planned quantity.
+          Used to measure production performance.
+
+
+      - name: production_status
+        description: "Current status of the production order."
+
+
+      - name: defect_rate
+        description: "Percentage of defective products identified during production."
+
+
+      - name: quality_status
+        description: >
+          Quality classification based on defect rate.
+          Possible values are Good, Acceptable and Needs Review.

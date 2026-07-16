@@ -1,7 +1,7 @@
 with products as (
 
     select *
-    from {{ ref('stg_products') }}
+    from {{ source('rosa_staging','stg_products') }}
 
 )
 

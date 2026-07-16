@@ -1,21 +1,20 @@
 with production_orders as (
 
     select *
-    from {{ ref('stg_production_orders') }}
-
+    from {{ source('rosa_staging','stg_production_orders') }}
 ),
 
 products as (
 
     select *
-    from {{ ref('stg_products') }}
+    from {{ source('rosa_staging','stg_products') }}
 
 ),
 
 factories as (
 
     select *
-    from {{ ref('stg_factories') }}
+    from {{ source('rosa_staging','stg_factories') }}
 
 )
 

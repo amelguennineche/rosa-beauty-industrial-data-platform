@@ -2,17 +2,114 @@ version: 2
 
 sources:
 
-  - name: staging
+  - name: rosa_staging
+    description: >
+      Operational staging layer containing cleaned manufacturing
+      data extracted from Rosa Manufacturing source systems.
+
     database: rosa_manufacturing
     schema: staging
 
     tables:
 
       - name: stg_products
-        description: "Produits fabriqués par Rosa Manufacturing"
+        description: >
+          Product master data containing information about manufactured products.
+
+        columns:
+          - name: product_id
+            description: "Unique identifier of the product."
+            data_tests:
+              - not_null
+              - unique
+
+          - name: product_name
+            description: "Product name."
+
+          - name: category
+            description: "Product category."
+
+          - name: brand
+            description: "Product brand."
+
+          - name: volume_ml
+            description: "Product volume in milliliters."
+
+          - name: launch_date
+            description: "Product launch date."
+
+          - name: active_flag
+            description: "Indicates whether the product is active."
 
       - name: stg_factories
-        description: "Usines de production"
+        description: >
+          Manufacturing facilities containing location, capacity
+          and operational information.
+
+        columns:
+          - name: factory_id
+            description: "Unique identifier of the factory."
+            data_tests:
+                - not_null
+                - unique
+
+          - name: factory_name
+            description: "Factory name."
+
+          - name: city
+            description: "City where the factory is located."
+
+          - name: region
+            description: "Administrative region."
+
+          - name: country
+            description: "Country where the factory operates."
+
+          - name: employees_count
+            description: "Number of employees working in the factory."
+
+          - name: production_capacity
+            description: "Maximum production capacity of the factory."
+
+          - name: opening_date
+            description: "Factory opening date."
+
+          - name: active_flag
+            description: "Indicates whether the factory is currently active."
 
       - name: stg_production_orders
-        description: "Ordres de production industriels"
+        description: >
+          Production order records containing planned and actual
+          production quantities and quality indicators.
+
+        columns:
+          - name: production_id
+            description: "Unique identifier of the production order."
+            data_tests:
+              - not_null
+              - unique
+
+          - name: product_id
+            description: "Identifier of the manufactured product."
+            data_tests:
+              - not_null
+
+          - name: factory_id
+            description: "Identifier of the manufacturing factory."
+            data_tests:
+                - not_null
+
+          - name: production_date
+            description: "Production execution date."
+
+          - name: planned_quantity
+            description: "Planned production quantity."
+
+          - name: actual_quantity
+            description: "Actual production quantity."
+
+          - name: production_status
+            description: "Production order status."
+
+          - name: defect_rate
+            description: "Percentage of defective products."

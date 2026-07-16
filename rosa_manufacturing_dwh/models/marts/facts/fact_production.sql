@@ -1,3 +1,6 @@
+-- depends_on: {{ ref('dim_products') }}
+-- depends_on: {{ ref('dim_factories') }}
+
 with production as (
 
     select *
@@ -39,4 +42,4 @@ select
 from production p
 
 left join date_dimension d
-    on p.production_date = d.date_id
+    on to_char(p.production_date, 'YYYYMMDD')::integer = d.date_id

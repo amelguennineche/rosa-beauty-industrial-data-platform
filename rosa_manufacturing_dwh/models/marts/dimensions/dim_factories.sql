@@ -1,7 +1,7 @@
 with factories as (
 
     select *
-    from {{ ref('stg_factories') }}
+    from {{ source('rosa_staging','stg_factories') }}
 
 )
 

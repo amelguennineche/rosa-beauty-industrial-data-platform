@@ -3,35 +3,82 @@ version: 2
 models:
 
   - name: dim_products
-    description: "Dimension contenant les informations descriptives des produits."
+    description: >
+      Dimension containing descriptive information about manufactured products.
+      This dimension is used to analyze production activities by product.
 
     columns:
 
       - name: product_id
-        description: "Identifiant unique du produit."
+        description: "Unique identifier of the product."
         tests:
           - unique
           - not_null
 
+      - name: product_name
+        description: "Name of the manufactured product."
+
+      - name: category
+        description: "Category of the product."
+
+      - name: brand
+        description: "Brand associated with the product."
+
+      - name: volume_ml
+        description: "Product volume expressed in milliliters."
+
+      - name: launch_date
+        description: "Date when the product was launched."
+
 
   - name: dim_factories
-    description: "Dimension contenant les informations descriptives des usines."
+    description: >
+      Dimension containing descriptive information about manufacturing
+      facilities. This dimension is used to analyze production performance
+      by factory location.
 
     columns:
 
       - name: factory_id
-        description: "Identifiant unique de l'usine."
+        description: "Unique identifier of the manufacturing factory."
         tests:
           - unique
           - not_null
-      
+
+      - name: factory_name
+        description: "Name of the manufacturing factory."
+
+      - name: city
+        description: "City where the factory is located."
+
+      - name: region
+        description: "Region where the factory is located."
+
+      - name: country
+        description: "Country where the factory operates."
+
+
   - name: dim_date
-    description: "Dimension calendrier utilisée pour les analyses temporelles."
+    description: >
+      Calendar dimension used for time-based analysis of production events.
 
     columns:
 
       - name: date_id
-        description: "Date unique utilisée comme clé de dimension."
+        description: >
+          Unique date key used as the primary key of the calendar dimension.
         tests:
           - unique
           - not_null
+
+      - name: production_date
+        description: "Original production timestamp associated with the date."
+
+      - name: year
+        description: "Year extracted from the production date."
+
+      - name: month
+        description: "Month extracted from the production date."
+
+      - name: day
+        description: "Day extracted from the production date."

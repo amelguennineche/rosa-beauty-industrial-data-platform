@@ -4,17 +4,22 @@ models:
 
   - name: fact_production
 
-    description: "Table de faits contenant les événements de production."
+    description: >
+      Fact table containing production events and performance metrics.
+      This table stores production quantities, efficiency indicators,
+      quality metrics and links to product, factory and date dimensions.
 
     columns:
 
       - name: production_id
-        description: "Identifiant unique de la production."
+        description: "Unique identifier of the production event."
         tests:
           - unique
           - not_null
 
+
       - name: product_id
+        description: "Identifier of the manufactured product."
         tests:
           - not_null
           - relationships:
@@ -22,7 +27,9 @@ models:
                 to: ref('dim_products')
                 field: product_id
 
+
       - name: factory_id
+        description: "Identifier of the manufacturing factory."
         tests:
           - not_null
           - relationships:
@@ -30,10 +37,43 @@ models:
                 to: ref('dim_factories')
                 field: factory_id
 
+
       - name: date_id
+        description: >
+          Foreign key referencing the calendar dimension.
+          Used for time-based production analysis.
         tests:
           - not_null
           - relationships:
               arguments:
                 to: ref('dim_date')
                 field: date_id
+
+
+      - name: planned_quantity
+        description: "Quantity planned for production."
+
+
+      - name: actual_quantity
+        description: "Quantity actually produced."
+
+
+      - name: production_variance
+        description: >
+          Difference between actual production quantity and planned quantity.
+
+
+      - name: production_efficiency
+        description: >
+          Ratio between actual quantity and planned quantity.
+          Used as a production performance indicator.
+
+
+      - name: defect_rate
+        description: >
+          Percentage of defective products identified during production.
+
+
+      - name: production_status
+        description: >
+          Current status of the production order.
